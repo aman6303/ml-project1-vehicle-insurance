@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vehicle Insurance AI Predictor</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+
+    <div class="container">
+        <header>
+            <h1>Vehicle Insurance AI</h1>
+            <p class="subtitle">
+                Enter the customer's details below. The system will analyze demographics and vehicle history to predict if they are interested in purchasing vehicle insurance.
+            </p>
+        </header>
+
+        <form method="post" action="/" id="predictionForm">
+            <div class="form-grid">
+                
+                <div class="form-group">
+                    <label for="Gender">Gender</label>
+                    <small class="form-helper">The gender of the policyholder.</small>
+                    <select id="Gender" name="Gender" required>
+                        <option value="" disabled selected>Select Gender</option>
+                        <option value="1">Male</option>
+                        <option value="0">Female</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="Age">Age</label>
+                    <small class="form-helper">Current age of the customer (18-100).</small>
+                    <input type="number" id="Age" name="Age" min="18" max="100" placeholder="e.g. 24" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="Driving_License">Driving License</label>
+                    <small class="form-helper">Does the customer hold a valid driving license?</small>
+                    <select id="Driving_License" name="Driving_License" required>
+                        <option value="1" selected>Yes</option>
+                        <option value="0">No</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="Region_Code">Region Code</label>
+                    <small class="form-helper">Unique code for the region where the customer resides.</small>
+                    <input type="number" step="0.01" id="Region_Code" name="Region_Code" placeholder="e.g. 28.0" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="Previously_Insured">Previously Insured</label>
+                    <small class="form-helper">Does the customer already have vehicle insurance?</small>
+                    <select id="Previously_Insured" name="Previously_Insured" required>
+                        <option value="1">Yes</option>
+                        <option value="0" selected>No</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="Annual_Premium">Annual Premium (₹)</label>
+                    <small class="form-helper">The amount the customer pays yearly for insurance.</small>
+                    <input type="number" step="0.01" id="Annual_Premium" name="Annual_Premium" placeholder="e.g. 30000.0" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="Policy_Sales_Channel">Policy Sales Channel</label>
+                    <small class="form-helper">Anonymized code for the method of outreach (e.g., Email, Agent).</small>
+                    <input type="number" step="0.01" id="Policy_Sales_Channel" name="Policy_Sales_Channel" placeholder="e.g. 152.0" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="Vintage">Vintage (Days)</label>
+                    <small class="form-helper">Number of days the customer has been associated with the company.</small>
+                    <input type="number" id="Vintage" name="Vintage" placeholder="e.g. 200" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="Vehicle_Age_lt_1_Year">Vehicle Age < 1 Year</label>
+                    <small class="form-helper">Is the vehicle brand new (less than 1 year old)?</small>
+                    <select id="Vehicle_Age_lt_1_Year" name="Vehicle_Age_lt_1_Year" required>
+                        <option value="0" selected>No</option>
+                        <option value="1">Yes</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="Vehicle_Age_gt_2_Years">Vehicle Age > 2 Years</label>
+                    <small class="form-helper">Is the vehicle older than 2 years? (If both are No, age is 1-2 years).</small>
+                    <select id="Vehicle_Age_gt_2_Years" name="Vehicle_Age_gt_2_Years" required>
+                        <option value="0" selected>No</option>
+                        <option value="1">Yes</option>
+                    </select>
+                </div>
+
+                <div class="form-group" style="grid-column: 1 / -1;">
+                    <label for="Vehicle_Damage_Yes">Has the Vehicle been Damaged?</label>
+                    <small class="form-helper">Has the customer's vehicle suffered damage in the past?</small>
+                    <select id="Vehicle_Damage_Yes" name="Vehicle_Damage_Yes" required>
+                        <option value="1">Yes</option>
+                        <option value="0">No</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="actions">
+                <a href="/train" class="btn-link btn-train">
+                   🔄 Retrain Model
+                </a>
+                
+                <button type="submit" class="btn-predict" id="predictBtn">
+                    <span class="spinner"></span>
+                    <span class="btn-text">Predict Insurance Interest</span>
+                </button>
+            </div>
+        </form>
+    </div>
+
+    <script src="/static/js/script.js"></script>
+</body>
+</html>

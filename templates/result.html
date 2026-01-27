@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prediction Result</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+
+    <div class="container" style="text-align: center;">
+        <header>
+            <h1>Prediction Result</h1>
+        </header>
+
+        {% if context %}
+            {% if 'Yes' in context %}
+                <div class="result-box yes">
+                    <div class="result-title">High Probability</div>
+                    <div class="result-desc">Success! This customer is likely <strong>interested</strong> in vehicle insurance.</div>
+                </div>
+            {% elif 'No' in context %}
+                <div class="result-box no">
+                    <div class="result-title">Low Probability</div>
+                    <div class="result-desc">This customer is <strong>unlikely</strong> to be interested in vehicle insurance at this time.</div>
+                </div>
+            {% else %}
+                <div class="result-box no">
+                    <div class="result-title">Notice</div>
+                    <div class="result-desc">{{ context }}</div>
+                </div>
+            {% endif %}
+        {% endif %}
+
+        <div class="actions" style="justify-content: center;">
+            <a href="/" class="btn-link btn-predict" style="max-width: 200px;">
+                ⬅ Predict Another
+            </a>
+        </div>
+    </div>
+
+</body>
+</html>

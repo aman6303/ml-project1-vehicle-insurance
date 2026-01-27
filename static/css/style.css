@@ -1,0 +1,180 @@
+:root {
+    --primary: #4f46e5;
+    --primary-hover: #4338ca;
+    --bg: #f8fafc;
+    --card: #ffffff;
+    --text: #334155;
+    --border: #e2e8f0;
+    --success: #10b981;
+    --danger: #ef4444;
+}
+
+body {
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    background-color: var(--bg);
+    color: var(--text);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    padding: 2rem;
+}
+
+.container {
+    background: var(--card);
+    padding: 2.5rem;
+    border-radius: 16px;
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 850px;
+    animation: fadeIn 0.5s ease-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+header {
+    text-align: center;
+    margin-bottom: 2.5rem;
+}
+
+h1 { margin: 0; color: var(--primary); font-size: 1.8rem; }
+.subtitle { margin-top: 0.5rem; color: #64748b; font-size: 0.95rem; line-height: 1.5; }
+
+.form-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+}
+
+@media (min-width: 640px) {
+    .form-grid { grid-template-columns: 1fr 1fr; }
+}
+
+.form-group { display: flex; flex-direction: column; }
+
+label {
+    font-weight: 600;
+    margin-bottom: 0.2rem; 
+    font-size: 0.95rem;
+    color: #1e293b;
+}
+
+.form-helper {
+    font-size: 0.8rem;
+    color: #64748b;
+    margin-bottom: 0.5rem;
+    line-height: 1.4;
+}
+
+input, select {
+    padding: 0.75rem;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    font-size: 1rem;
+    background-color: #f9fafb;
+    transition: all 0.2s;
+}
+
+input:focus, select:focus {
+    outline: none;
+    border-color: var(--primary);
+    background-color: #fff;
+    box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
+}
+
+select:disabled {
+    background-color: #e2e8f0;
+    cursor: not-allowed;
+    color: #94a3b8;
+}
+
+.actions {
+    margin-top: 2.5rem;
+    display: flex;
+    gap: 1rem;
+    justify-content: flex-end;
+    align-items: center;
+    border-top: 1px solid var(--border);
+    padding-top: 1.5rem;
+}
+
+button, .btn-link {
+    padding: 0.85rem 1.75rem;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    border: none;
+    text-decoration: none;
+    font-size: 1rem;
+    transition: transform 0.1s, opacity 0.2s;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+button:active { transform: scale(0.98); }
+
+.btn-predict {
+    background-color: var(--primary);
+    color: white;
+    flex-grow: 1; 
+    max-width: 300px;
+}
+.btn-predict:hover { background-color: var(--primary-hover); }
+
+.btn-train {
+    background-color: transparent;
+    color: #64748b;
+    border: 1px solid var(--border);
+    font-size: 0.9rem;
+}
+.btn-train:hover { background-color: #f1f5f9; color: var(--danger); border-color: var(--danger); }
+
+/* Result Styling */
+.result-box {
+    margin-top: 2rem;
+    padding: 1.5rem;
+    border-radius: 12px;
+    text-align: center;
+    animation: popIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+@keyframes popIn {
+    from { opacity: 0; transform: scale(0.95); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+.result-box.yes {
+    background-color: #ecfdf5;
+    border: 2px solid var(--success);
+    color: #065f46;
+}
+
+.result-box.no {
+    background-color: #fef2f2;
+    border: 2px solid var(--danger);
+    color: #991b1b;
+}
+
+.result-title { font-size: 1.25rem; margin-bottom: 0.5rem; font-weight: 800; }
+.result-desc { font-size: 1rem; opacity: 0.9; }
+
+/* Spinner */
+.spinner {
+    border: 3px solid rgba(255,255,255,0.3);
+    border-radius: 50%;
+    border-top: 3px solid white;
+    width: 20px;
+    height: 20px;
+    animation: spin 1s linear infinite;
+    margin-right: 10px;
+    display: none;
+}
+
+@keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+
+.loading .spinner { display: inline-block; }
