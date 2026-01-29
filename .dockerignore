@@ -8,3 +8,5 @@ README.md
 LICENSE
 src.egg-info
 notebook
+__pycache__/
+__pycache__
